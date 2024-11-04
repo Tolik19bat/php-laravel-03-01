@@ -13,8 +13,9 @@ class GroupController extends Controller
      */
     public function index()
     {
-        // Отображение списка групп
-        return Group::all();
+       // Отображает список всех групп с ссылкой на страницу создания новой группы
+       $groups = Group::all();
+       return view('groups.index', ['groups' => $groups]);
     }
 
     /**
@@ -22,7 +23,8 @@ class GroupController extends Controller
      */
     public function create()
     {
-        // Отображение формы для создания новой группы
+        // Отображает страницу для создания новой группы
+        return view('groups.create');
     }
 
     /**
@@ -37,7 +39,10 @@ class GroupController extends Controller
             'is_active' => 'required|boolean',
         ]);
 
-        return Group::create($validated);
+        $group = Group::create($validated);
+
+        // Перенаправление на список групп после создания
+        return redirect()->route('groups.index');
     }
 
     /**
@@ -45,8 +50,8 @@ class GroupController extends Controller
      */
     public function show(Group $group)
     {
-         // Отображение конкретной группы
-         return $group;
+        // Отображает информацию о выбранной группе и список студентов этой группы
+        return view('groups.show', ['group' => $group, 'students' => $group->students]);
     }
 
     /**
