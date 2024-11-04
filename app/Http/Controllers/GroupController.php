@@ -83,9 +83,16 @@ class GroupController extends Controller
      */
     public function destroy(Group $group)
     {
+
+        // Проверка на наличие студентов в группе
+        if ($group->students()->count() > 0) {
+            // Если есть студенты, перенаправляем обратно с сообщением
+            return redirect()->route('groups.index')->with('error', 'Невозможно удалить группу, так как в ней есть студенты. Сначала удалите всех студентов.');
+        }
+
         // Удаляем студента
         $group->delete();
-        
+
         // Перенаправляем на список групп с сообщением об успехе
         return redirect()->route('groups.index')->with('success', 'Группа успешно удалена');
     }
