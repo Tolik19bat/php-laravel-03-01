@@ -13,9 +13,9 @@ class GroupController extends Controller
      */
     public function index()
     {
-       // Отображает список всех групп с ссылкой на страницу создания новой группы
-       $groups = Group::all();
-       return view('groups.index', ['groups' => $groups]);
+        // Отображает список всех групп с ссылкой на страницу создания новой группы
+        $groups = Group::all();
+        return view('groups.index', ['groups' => $groups]);
     }
 
     /**
@@ -67,8 +67,8 @@ class GroupController extends Controller
      */
     public function update(Request $request, Group $group)
     {
-          // Валидация и обновление данных группы
-          $validated = $request->validate([
+        // Валидация и обновление данных группы
+        $validated = $request->validate([
             'title' => 'required|string|max:50',
             'start_from' => 'required|date',
             'is_active' => 'required|boolean',
@@ -83,8 +83,7 @@ class GroupController extends Controller
      */
     public function destroy(Group $group)
     {
-        // Удаление группы
-        $group->delete();
-        return response()->json(['message' => 'Group deleted successfully']);
+        // Перенаправляем на список групп с сообщением об успехе
+        return redirect()->route('groups.index')->with('success', 'Группа успешно удалена');
     }
 }

@@ -34,7 +34,6 @@ class StudentController extends Controller
     {
         // Валидация и создание нового студента
         $validated = $request->validate([
-            'group_id' => 'required|exists:groups,id',
             'surname' => 'required|string|max:50',
             'name' => 'required|string|max:50',
         ]);
