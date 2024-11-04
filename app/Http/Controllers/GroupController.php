@@ -83,6 +83,9 @@ class GroupController extends Controller
      */
     public function destroy(Group $group)
     {
+        // Удаляем студента
+        $group->delete();
+        
         // Перенаправляем на список групп с сообщением об успехе
         return redirect()->route('groups.index')->with('success', 'Группа успешно удалена');
     }

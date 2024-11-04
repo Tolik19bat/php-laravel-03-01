@@ -58,8 +58,8 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-       // Отображение формы для редактирования студента (для веб-интерфейса)
-       return view('students.edit', ['student' => $student, 'groups' => Group::all()]);
+        // Отображение формы для редактирования студента (для веб-интерфейса)
+        return view('students.edit', ['student' => $student, 'groups' => Group::all()]);
     }
 
     /**
@@ -82,11 +82,13 @@ class StudentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Student $student)
+    public function destroy(Group $group, Student $student)
     {
         // Удаление студента
         $student->delete();
 
-        return response()->json(['message' => 'Student deleted successfully']);
+        // Перенаправляем на страницу группы с сообщением об успехе
+        return redirect()->route('groups.show', $group)->with('success', 'Студент успешно удален');
+
     }
 }
