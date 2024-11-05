@@ -5,7 +5,7 @@
 @section('content')
 
 @if (session('success'))
-    <div class="alert alert-success">
+    <div id="success-message" class="alert alert-success">
         {{ session('success') }}
     </div>
 @endif
@@ -15,6 +15,17 @@
         {{ session('error') }}
     </div>
 @endif
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        setTimeout(function() {
+            var successMessage = document.getElementById('success-message');
+            if (successMessage) {
+                successMessage.style.display = 'none';
+            }
+        }, 3000); // 5 секунд
+    });
+</script>
 
 <h1>Список групп</h1>
 <a href="{{ route('groups.create') }}" class="btn btn-primary mb-3">Создать новую группу</a>

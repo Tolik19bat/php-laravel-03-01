@@ -8,8 +8,7 @@
 
 <a href="{{ route('groups.show', $group) }}" class="btn btn-secondary">Назад к группе</a>
 
-<form action="{{ route('students.destroy', [$group, $student]) }}" method="POST"
-    onsubmit="return confirm('Вы уверены, что хотите удалить этого студента?');">
+<form action="{{ route('students.destroy', [$group, $student]) }}" method="POST">
     @csrf
     @method('DELETE')
     <button style="margin-top: 1rem;" type="submit" class="btn btn-danger">Удалить студента</button>

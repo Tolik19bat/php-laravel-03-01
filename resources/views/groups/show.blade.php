@@ -26,8 +26,7 @@
 
 <a href="{{ route('groups.index') }}" class="btn btn-secondary mt-3">Назад к списку групп</a>
 
-<form action="{{ route('groups.destroy', $group) }}" method="POST"
-    onsubmit="return confirm('Вы уверены, что хотите удалить эту группу?');">
+<form action="{{ route('groups.destroy', $group) }}" method="POST">
     @csrf
     @method('DELETE')
     <button style="margin-top: 1rem;" type="submit" class="btn btn-danger">Удалить группу</button>
