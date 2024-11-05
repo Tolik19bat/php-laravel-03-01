@@ -23,7 +23,7 @@
             if (successMessage) {
                 successMessage.style.display = 'none';
             }
-        }, 3000); // 5 секунд
+        }, 2000); // милисекунд
     });
 </script>
 
