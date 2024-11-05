@@ -38,5 +38,4 @@
     @method('DELETE')
     <button style="margin-top: 1rem;" type="submit" class="btn btn-danger">Удалить группу</button>
 </form>
-
 @endsection

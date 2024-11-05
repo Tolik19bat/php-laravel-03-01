@@ -17,8 +17,8 @@
 @endif
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        setTimeout(function() {
+    document.addEventListener("DOMContentLoaded", function () {
+        setTimeout(function () {
             var successMessage = document.getElementById('success-message');
             if (successMessage) {
                 successMessage.style.display = 'none';

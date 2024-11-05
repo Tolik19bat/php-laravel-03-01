@@ -84,21 +84,21 @@ class GroupController extends Controller
     public function destroy($id)
     {
         $group = Group::find($id);
-    
+
         if ($group->students()->count() > 0) {
             // Получаем студентов для отображения вместе с ошибкой
             $students = $group->students;
-            
+
             return view('groups.show', [
                 'group' => $group,
                 'students' => $students,
                 'error' => 'Невозможно удалить группу, так как в ней есть студенты. Сначала удалите всех студентов.'
             ]);
         }
-    
+
         // Если студентов нет, удаляем группу
         $group->delete();
-    
+
         return redirect()->route('groups.index')->with('success', 'Группа успешно удалена');
     }
 }

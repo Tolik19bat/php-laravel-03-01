@@ -13,5 +13,4 @@
     @method('DELETE')
     <button style="margin-top: 1rem;" type="submit" class="btn btn-danger">Удалить студента</button>
 </form>
-
 @endsection
