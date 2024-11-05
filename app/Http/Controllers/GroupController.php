@@ -81,19 +81,24 @@ class GroupController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Group $group)
+    public function destroy($id)
     {
-
-        // Проверка на наличие студентов в группе
+        $group = Group::find($id);
+    
         if ($group->students()->count() > 0) {
-            // Если есть студенты, перенаправляем обратно с сообщением
-            return redirect()->route('groups.index')->with('error', 'Невозможно удалить группу, так как в ней есть студенты. Сначала удалите всех студентов.');
+            // Получаем студентов для отображения вместе с ошибкой
+            $students = $group->students;
+            
+            return view('groups.show', [
+                'group' => $group,
+                'students' => $students,
+                'error' => 'Невозможно удалить группу, так как в ней есть студенты. Сначала удалите всех студентов.'
+            ]);
         }
-
-        // Удаляем студента
+    
+        // Если студентов нет, удаляем группу
         $group->delete();
-
-        // Перенаправляем на список групп с сообщением об успехе
+    
         return redirect()->route('groups.index')->with('success', 'Группа успешно удалена');
     }
 }

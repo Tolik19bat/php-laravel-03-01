@@ -3,6 +3,13 @@
 @section('title', $group->title)
 
 @section('content')
+
+@if (isset($error))
+    <div class="alert alert-danger">
+        {{ $error }}
+    </div>
+@endif
+
 <h1>{{ $group->title }}</h1>
 <p>Дата начала: {{ $group->start_from }}</p>
 <p>Активная: {{ $group->is_active ? 'Да' : 'Нет' }}</p>
